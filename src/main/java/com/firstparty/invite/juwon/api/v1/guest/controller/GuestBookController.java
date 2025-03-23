@@ -1,20 +1,18 @@
 package com.firstparty.invite.juwon.api.v1.guest.controller;
 
+import com.firstparty.invite.juwon.api.v1.guest.repository.GuestBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/guestbook")
 @CrossOrigin(origins = "*")
 class GuestBookController {
     @Autowired
-    private GuestbookRepository guestbookRepository;
+    private GuestBookRepository guestBookRepository;
 
     @PostMapping
-    GuestbookEntry createEntry(
+    GuestBookEntry createEntry(
         @RequestParam("name") String name,
         @RequestParam("message") String message,
         @RequestParam(value = "image", required = false) MultipartFile image) throws IOException {

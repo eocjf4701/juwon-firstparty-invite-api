@@ -1,7 +1,7 @@
 package com.firstparty.invite.juwon.api.v1.rsvp.controller;
 
-import com.firstparty.invite.juwon.api.v1.rsvp.entity.RsvpEntity;
-import com.firstparty.invite.juwon.api.v1.rsvp.repository.RsvpRepository;
+import com.firstparty.invite.juwon.api.v1.guest.entity.GuestBookEntity;
+import com.firstparty.invite.juwon.api.v1.guest.repository.GuestBookRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,20 +11,20 @@ import java.util.List;
 @RequestMapping("/api/v1/rsvp")
 public class RsvpController {
 
-    private final RsvpRepository rsvpRepository;
+    private final GuestBookRepository guestBookRepository;
 
-    public RsvpController(RsvpRepository rsvpRepository) {
-        this.rsvpRepository = rsvpRepository;
+    public RsvpController(GuestBookRepository guestBookRepository) {
+        this.guestBookRepository = guestBookRepository;
     }
 
     @PostMapping("/save-rsvp")
-    public ResponseEntity<String> saveRsvp(@RequestBody RsvpEntity rsvp) {
-        rsvpRepository.save(rsvp);
+    public ResponseEntity<String> saveRsvp(@RequestBody GuestBookEntity rsvp) {
+        guestBookRepository.save(rsvp);
         return ResponseEntity.ok("RSVP 저장 완료!");
     }
 
     @GetMapping("/all-rsvps")
-    public List<RsvpEntity> getAllRsvps() {
-        return rsvpRepository.findAll();
+    public List<GuestBookEntity> getAllRsvps() {
+        return guestBookRepository.findAll();
     }
 }
